@@ -3,7 +3,7 @@ import time
 import simplejson as json
 
 app = Flask(__name__)
-app.debug = True
+#app.debug = True
 
 current_data = {}
 has_new_data = False
@@ -11,6 +11,12 @@ has_new_data = False
 @app.route("/")
 def index():
     return render_template('index.html'), 200
+
+
+@app.route("/mind_sumo")
+def mind_sumo():
+    return render_template('mind_sumo.html'), 200
+
 
 @app.route("/data", methods=['GET'])
 def data():
@@ -31,7 +37,6 @@ def update_data():
 
     data = request.args["update"]
 
-    print data
     data = json.loads(data)
 
     has_new_data = True
